@@ -39,25 +39,31 @@ export default class App extends Component {
         if(firstWeekDay - lastDaysOfPreviousMonthArr.length == 1) {
           // reverse arr to display days like 27, 28, 29, 30 - not: 30, 29, 28, 27
           lastDaysOfPreviousMonthArr.reverse();
-          days.push(...lastDaysOfPreviousMonthArr);
+          lastDaysOfPreviousMonthArr = lastDaysOfPreviousMonthArr.map((item, index) => {
+            /*
+            pushing object as an array element with two properties: index (number of day)
+            and status (day of current month or previous one)
+            */
+            days.push({index: item, status: "inactive"});
+          });
         }
       } else if(date.getDate() == firstWeekDay) { // to start dating when the first day of week and month matched
-        days.push(1);
+        days.push({index: 1, status: "active"});
         // to take the last weekday value (minus 1 to prevent repeating the same number in the following 'else' statement)
         var firstWeekDayIndex = firstWeekDay - 1;
       } else { // continue dating when month days number becomes bigger than weekdays one
           // to start pushing number values into calendar rows after empty ones
-          days.push(date.getDate() - firstWeekDayIndex);
+          days.push({index: date.getDate() - firstWeekDayIndex, status: "active"});
           /*
           check if days array length is equil to the last day of current month. If yes, create counter with the last array index value
           and continue to fill up calendar with numbers to reach the last day of month (firsly empty values were calculated as well,
           so every month finished with 27, 26 day extc.)
           */
           if(days.length == lastDayOfMonth.getDate()) {
-            let counter = days[days.length - 1];
+            let counter = days[days.length - 1].index;
             while(counter < lastDayOfMonth.getDate()) {
               counter++;
-              days.push(counter);
+              days.push({index: counter, status: "active"});
             }
           }
       }
@@ -69,7 +75,7 @@ export default class App extends Component {
       with 7 in every embedded array (to show user 7 days per line)
     */
     let result = [];
-    for(var i = 0; i < 36; i++) {
+    for(var i = 0; i <= lastDayOfPreviousMonthNumber; i++) {
       let line = [];
       for(var j = i; j < i + 7; j++) {
         line.push(days[j]);
@@ -123,12 +129,12 @@ export default class App extends Component {
         currentMonth: 11,
         currentYear: prevYear - 1,
         currentDay: previousDate.getDay() + 1
-      })
+      });
     } else {
       this.setState({
         currentMonth: prevMonth,
         currentDay: previousDate.getDay() + 1
-      })
+      });
     }
   }
   // next month btn in calendar
@@ -142,11 +148,11 @@ export default class App extends Component {
       this.setState({
         currentMonth: 0,
         currentYear: nextYear + 1,
-      })
+      });
     } else {
       this.setState({
         currentMonth: nextMonth
-      })
+      });
     }
   }
 }
