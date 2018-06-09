@@ -6,9 +6,21 @@
 ------------------------------------------------------------------------------*/
 
 body {
+  width: 100%;
   margin: 0;
   padding: 0;
   font-family: $main-font-family;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .container {
@@ -25,15 +37,79 @@ body {
                             STYLES FOR HEADER
 ------------------------------------------------------------------------------*/
 
+.site-header {
+  display: flex;
+  align-items: center;
+}
+
+.site-header__logo-container {
+  background-color: #377DFF;
+  width: 400px;
+  height: 100px;
+}
+
+.site-header__nav-list {
+  display: flex;
+  color: #959BAE;
+  font-size: 18px;
+  margin-left: 50px;
+}
+
+.site-header__nav-list-item {
+  margin-right: 50px;
+}
+
+.site-header__nav-list-item-link {
+  transition: $main-transition;
+  &:hover {
+    color: #212E51;
+  }
+}
+
 
 
 /*------------------------------------------------------------------------------
                         STYLES FOR MAIN CONTENT
 ------------------------------------------------------------------------------*/
 
+// Location aside
+
+.test {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: $main-section-background;
+}
+
+.main__calendar-container {
+  position: relative;
+}
+
 .calendar-container {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  padding: 20px 40px 40px;
+  border-radius: 10px;
+}
+
+.calendar-container__item {
   width: 404px;
-  margin: 0 auto;
+  margin-right: 50px;
+  &:last-of-type {
+    margin-right: 0;
+  }
 }
 
 .calendar-container__heading-section {
@@ -79,6 +155,7 @@ body {
   overflow: hidden;
   border-bottom: 1px solid lightgrey;
   box-sizing: border-box;
+  background-color: #fff;
 }
 
 .calendar-container__body-month-days-item {
@@ -99,9 +176,9 @@ body {
   &:before {
     content: "";
     position: absolute;
-    width: 1px;
+    width: 2px;
     height: 100%;
-    background: lightgrey;
+    background: #fff;
     left: 22px;
     -ms-transform: skewX(134deg);
     transform: skewX(45deg);

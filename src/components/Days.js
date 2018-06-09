@@ -6,7 +6,7 @@ export default class Days extends Component {
     let days = this.props.days(this.props.year, this.props.month, 1);
     days = days.map((item, index) => {
       let arr = item.map((item2, index2) => {
-        // check the last day of month
+        // if the last day in row is bigger than a month day, render just empty squares
         if(item2 == undefined) {
           return(
             <div key={index2} className="calendar-container__body-month-days-item">
@@ -14,7 +14,7 @@ export default class Days extends Component {
             </div>
           );
         } else {
-          // if it is a previous month, add grey color to its last days
+          // if it is a previous month, add grey color class (.last-days-of-month) to its last days
           if(item2.status == "inactive") {
             return(
               <div key={item2.index} className="calendar-container__body-month-days-item">

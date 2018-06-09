@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './components/App';
 
 
-ReactDOM.render(<App />, document.getElementById('main'));
+ReactDOM.render(<App />, document.querySelector('.main__calendar-container'));

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Days from './Days';
-import './css/app.css';
+import '../includes/css/app.css';
 
 export default class App extends Component {
   constructor(props) {
@@ -75,7 +75,7 @@ export default class App extends Component {
       with 7 in every embedded array (to show user 7 days per line)
     */
     let result = [];
-    for(var i = 0; i <= lastDayOfPreviousMonthNumber; i++) {
+    for(var i = 0; i <= 35; i++) {
       let line = [];
       for(var j = i; j < i + 7; j++) {
         line.push(days[j]);
@@ -83,7 +83,7 @@ export default class App extends Component {
       result.push(line);
       i = j - 1;
     }
-    return result;
+  return result;
   }
   // rendering main content
   render() {
@@ -99,8 +99,8 @@ export default class App extends Component {
     });
     // rendering month days
      return(
-      <div className="container">
-        <div className="calendar-container">
+      <section className="calendar-container">
+        <div className="calendar-container__item">
           <section className="calendar-container__heading-section">
             <span className="calendar-container__heading-section-switch" onClick={this.getPreviousMonth.bind(this)}> &lArr; </span>
             <h2 className="calendar-container__heading-section-title">{this.state.monthArr[this.state.currentMonth]} {this.state.currentYear}</h2>
@@ -113,7 +113,7 @@ export default class App extends Component {
             <Days year={this.state.currentYear} month={this.state.currentMonth} days={this.getAllDaysInMonth.bind(this)} />
           </div>
         </div>
-      </div>
+      </section>
     );
   }
   // previous month btn in calendar
